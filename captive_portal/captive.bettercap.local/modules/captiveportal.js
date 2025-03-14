@@ -81,7 +81,7 @@ onEvent("captiveportal.unauthorize", function(data) {
  * captive portal on the specified ports.
  */
 function addDownstreamRules() {
-	if (os === "darwin" || os === "freebsd" || os === "netbsd" || os === "openbsd") {
+	if (selectorOsBsdValidator.test(os)) {
 		run("!pfctl -t authorized -T add ''"); 
 		run("!pfctl -a captive -r 'block all'"); 
 		run("!pfctl -a captive -r 'pass out on " + iface + " from " + address + " to any'") 
@@ -124,7 +124,7 @@ function addDownstreamRules() {
  * Removes the firewall rules that were set by the addDownstreamRules function.
  */
 function removeDownstreamRules() {
-	if (os === "darwin" || os === "freebsd" || os === "netbsd" || os === "openbsd") {
+	if (selectorOsBsdValidator.test(os)) {
 		run("!pfctl -a captive -F rules"); 
 		run("!pfctl -t authorized -T flush"); 
 	} else if (os === "linux") {
@@ -156,7 +156,7 @@ function addUpstreamRulesForClient(clientIP) {
 		log_error("Invalid or missing 'clientIP' provided. (got " + clientIP + ")");
 		return;
 	}
-	if (os === "darwin" || os === "freebsd" || os === "netbsd" || os === "openbsd") {
+	if (selectorOsBsdValidator.test(os)) {
 		run("!pfctl -t authorized -T add " + clientIP); 
 		// redirect port 53 to resolver addr
 	} else if (os === "linux") {
@@ -184,7 +184,7 @@ function removeUpstreamRulesForClient(clientIP) {
 		log_error("Invalid or missing 'clientIP' provided. (got " + clientIP + ")");
 		return;
 	}
-	if (os === "darwin" || os === "freebsd" || os === "netbsd" || os === "openbsd") {
+	if (selectorOsBsdValidator.test(os)) {
 		run("!pfctl -t authorized -T delete " + clientIP); 
 		// remove redirect port 53 to resolver addr
 	} else if (os === "linux") {
@@ -271,6 +271,7 @@ function unauthorize(clientIP) {
  * Writes current state of leases to the 'captiveportal.lease.file' file path.
  */
 function writeLeases() {
+	// also write to session env
 	writeFile(leaseFilePath, JSON.stringify(leases));
 }
 
