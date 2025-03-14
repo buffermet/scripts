@@ -28,7 +28,7 @@ run("set captiveportal.dns.resolver 1.1.1.1");
 // Choose the Time To Live of DNS query responses that point to the captive portal address (seconds, default=1)
 run("set captiveportal.dns.ttl 1");
 // Choose how many seconds clients have to wait until they can re-authenticate (ignored if captiveportal.lease.resettime is set) (default=86400) (24h in seconds)
-run("set captiveportal.lease.delay 1");
+run("set captiveportal.lease.delay 86400");
 // Choose the download limit in bytes for active leases (binary, default=1073741824) (1 gigabyte)
 run("set captiveportal.lease.downloadlimit 1073741824");
 // Choose the duration of leases (seconds, default=3600) (1 hour)
@@ -48,4 +48,3 @@ run("set dns.proxy.script /usr/local/share/bettercap/scripts/captive_portal/capt
 
 // Start captive portal
 require("modules/captiveportal.js");
-
