@@ -1,0 +1,47 @@
+<html>
+	<meta name=viewport content="width=device-width, initial-scale=1" />
+	<head>
+		<title>Sign in</title>
+	</head>
+	<style>
+		body {
+			align-items: center;
+			background-color: #fff;
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			justify-content: space-evenly;
+			margin: 0;
+			user-select: none;
+		}
+		a {
+			margin: 0 16pt;
+		}
+		button {
+			background-color: #333;
+			border: none;
+			border-radius: 16pt;
+			color: #ccc;
+			font-family: 'Roboto', sans-serif;
+			font-size: 16pt;
+			font-weight: 500;
+			padding: 16pt;
+		}
+		logo {
+			background-image: url('./img/logo.svg');
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: contain;
+			display: block;
+			height: 48pt;
+			margin: 0 16pt;
+			width: calc(100% - 32pt);
+		}
+	</style>
+	<body>
+		<logo></logo>
+		<a href=/auth>
+			<button>REQUEST&nbsp;LEASE</button>
+		</a>
+	</body>
+</html>

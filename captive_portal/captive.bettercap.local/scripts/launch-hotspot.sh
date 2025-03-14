@@ -1,0 +1,2 @@
+# start ap and bettercap
+
