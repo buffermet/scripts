@@ -128,20 +128,20 @@ function removeDownstreamRules() {
 		run("!pfctl -a captive -F rules"); 
 		run("!pfctl -t authorized -T flush"); 
 	} else if (os === "linux") {
-		run("!iptables -D FORWARD -j DROP &"); 
-		run("!ip6tables -D FORWARD -j DROP &"); 
+		run("!iptables -D FORWARD -j DROP"); 
+		run("!ip6tables -D FORWARD -j DROP"); 
 		ports.tcp.forEach(function(tcpPort) {
 			if (address.indexOf(":") === -1) {
-				run("!iptables -D FORWARD -p tcp --dport " + tcpPort + " -d " + address + " -j ACCEPT &"); 
+				run("!iptables -D FORWARD -p tcp --dport " + tcpPort + " -d " + address + " -j ACCEPT"); 
 			} else {
-				run("!ip6tables -D FORWARD -p tcp --dport " + tcpPort + " -d " + address + " -j ACCEPT &"); 
+				run("!ip6tables -D FORWARD -p tcp --dport " + tcpPort + " -d " + address + " -j ACCEPT"); 
 			}
 		});
 		ports.udp.forEach(function(udpPort) {
 			if (address.indexOf(":") === -1) {
-				run("!iptables -I FORWARD -p udp --dport " + udpPort + " -d " + address + " -j ACCEPT &"); 
+				run("!iptables -D FORWARD -p udp --dport " + udpPort + " -d " + address + " -j ACCEPT"); 
 			} else {
-				run("!ip6tables -I FORWARD -p udp --dport " + udpPort + " -d " + address + " -j ACCEPT &"); 
+				run("!ip6tables -D FORWARD -p udp --dport " + udpPort + " -d " + address + " -j ACCEPT"); 
 			}
 		});
 	}
