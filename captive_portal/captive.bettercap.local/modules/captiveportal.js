@@ -324,8 +324,8 @@ try {
 	leaseDuration = 3600;
 }
 leaseResetTime = env("captiveportal.lease.resettime");
-if (leaseResetTime && !/\d\d:\d\d/.test(leaseResetTime)) {
-	log_fatal("Error parsing captiveportal.lease.resettime: must match HH:mm 24h format (00:00).");
+if (leaseResetTime && !/\d\d:\d\d:\d\d/.test(leaseResetTime)) {
+	log_fatal("Error parsing captiveportal.lease.resettime: must match HH:mm:ss 24h format (00:00).");
 }
 leaseDelay = env("captiveportal.lease.delay")
 if (leaseDelay && !/\d+/.test(leaseDelay) || leaseDelay === 0) {
