@@ -63,8 +63,8 @@ function setInterval(fn, s) {
 }
 
 /**
- * @param {function} fn Function that will be continuously executed.
- * @param {int} s Delay in seconds before each execution.
+ * @param {function} fn Function that will be executed.
+ * @param {int} s Delay in seconds before execution.
  * @returns {int} id
  */
 function setTimeout(fn, s) {
